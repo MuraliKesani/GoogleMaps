@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyDbX5rQZgGsPt1F4BVWcVKpPqZrGnnduJg")
         GMSPlacesClient.provideAPIKey("AIzaSyDbX5rQZgGsPt1F4BVWcVKpPqZrGnnduJg")
+        
+        print("DATA PATH :",FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         // Override point for customization after application launch.
         return true
     }

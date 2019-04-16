@@ -12,6 +12,7 @@ import GooglePlaces
 import MapKit
 import CoreData
 
+
 class AddLocationVC: UIViewController{
 
     @IBOutlet var longitude: UILabel!
