@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //hello
         nameOfWonder = ["Petra","Taj Mahal","Colosseum","Chichén Itzá","Machu Picchu","Christ the Redeemer","Great Wall of China"]
         nameOfCountry = ["Jordan","India","Italy","Mexico","Peru","Brazil","China"]
         lattitudeArray = [30.3285,27.1750,41.8902,20.6843,-13.163136,-22.951916,40.4319]
