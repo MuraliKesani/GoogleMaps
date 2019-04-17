@@ -14,9 +14,10 @@ import CoreData
 
 
 class AddLocationVC: UIViewController{
-
+    
     @IBOutlet var longitude: UILabel!
     @IBOutlet var lattitude: UILabel!
+    @IBOutlet weak var placeTF: UITextField!
     
     
     var firstVC:ViewController!
@@ -32,12 +33,12 @@ class AddLocationVC: UIViewController{
     @IBOutlet var mapToView: GMSMapView!
     @IBOutlet var imagePicker: UIImageView!
     var picker:UIImagePickerController?=UIImagePickerController()
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         picker?.delegate = self
         
-       mapMarker()
+        mapMarker()
         
         mapToView.isMyLocationEnabled = true
         mapToView.settings.compassButton = true
@@ -61,7 +62,8 @@ class AddLocationVC: UIViewController{
     {
         
         let managedObj = NSManagedObject(entity: locationEntity, insertInto: managedObjectContext)
-
+        
+        managedObj.setValue(placeTF.text, forKey: "place")
         managedObj.setValue(Double(lattitude.text!), forKey: "latitude")
         managedObj.setValue(Double(longitude.text!), forKey: "longitude")
         
@@ -79,22 +81,22 @@ class AddLocationVC: UIViewController{
             print("Unable to save")
         }
     }
-
+    
     @IBAction func onSaveBtnTap(_ sender: UIButton)
     {
-       savingLocationInCoreData()
+        savingLocationInCoreData()
     }
     
 }
 extension AddLocationVC: CLLocationManagerDelegate,GMSMapViewDelegate{
     
     func mapMarker(){
-       
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-      
+        
         
     }
     func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker)
@@ -118,13 +120,13 @@ extension AddLocationVC: CLLocationManagerDelegate,GMSMapViewDelegate{
         {
             currenLocation = locations.last
         }
-       
-                marker = GMSMarker()
-                marker.position = currenLocation!.coordinate
-                marker.map = mapToView
-                marker.title = "ffdgdgdfg"
-                //marker.snippet = "retetertert"
-                marker.isDraggable = true
+        
+        marker = GMSMarker()
+        marker.position = currenLocation!.coordinate
+        marker.map = mapToView
+        marker.title = "ffdgdgdfg"
+        //marker.snippet = "retetertert"
+        marker.isDraggable = true
         
         let cam = GMSCameraPosition(latitude: currenLocation!.coordinate.latitude, longitude: currenLocation!.coordinate.longitude, zoom: 12.0)
         mapToView.camera = cam
